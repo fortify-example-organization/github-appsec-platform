@@ -1,0 +1,27 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../platform-actions"
+		},
+		{
+			"path": "../platform-docs"
+		},
+		{
+			"path": "../platform-governance"
+		},
+		{
+			"path": "../platform-workflows"
+		}
+	],
+	"settings": {
+		"chat.tools.terminal.autoApprove": {
+			"/^git status --short && printf '\\\\n--- submodule config ---\\\\n' && if test -f \\.gitmodules; then sed -n '1,240p' \\.gitmodules; else echo 'No \\.gitmodules file'; fi && printf '\\\\n--- submodule status ---\\\\n' && git submodule status && printf '\\\\n--- top-level entries ---\\\\n' && find \\. -maxdepth 1 -mindepth 1 -type d -not -path '\\./\\.git' -print \\| sort$/": {
+				"approve": true,
+				"matchCommandLine": true
+			}
+		}
+	}
+}

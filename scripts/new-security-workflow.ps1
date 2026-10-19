@@ -7,7 +7,7 @@ param(
     [string]$Language,
 
     [Parameter(Mandatory = $false)]
-    [string]$PlatformOrg = "fortify-presales",
+    [string]$PlatformOrg = "fortify-example-organization",
 
     [Parameter(Mandatory = $false)]
     [string]$PlatformRepo = "platform-workflows",

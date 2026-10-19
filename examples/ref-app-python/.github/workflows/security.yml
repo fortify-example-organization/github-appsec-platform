@@ -14,7 +14,7 @@ permissions:
 jobs:
   sec_sast_fod:
     name: Fortify SAST (FoD)
-    uses: fortify-presales/platform-workflows/.github/workflows/reusable-fortify-fod.yml@v1
+    uses: fortify-example-organization/platform-workflows/.github/workflows/reusable-fortify-fod.yml@v1
     with:
       language: python
       source_dir: .
@@ -29,7 +29,7 @@ jobs:
 
   sec_sca_sonatype:
     name: Sonatype SCA
-    uses: fortify-presales/platform-workflows/.github/workflows/reusable-sonatype-sca.yml@v1
+    uses: fortify-example-organization/platform-workflows/.github/workflows/reusable-sonatype-sca.yml@v1
     with:
       application_id: ${{ vars.LIFECYCLE_APPLICATION_ID != '' && vars.LIFECYCLE_APPLICATION_ID || github.event.repository.name }}
       organization_id: ${{ vars.LIFECYCLE_ORGANIZATION_ID != '' && vars.LIFECYCLE_ORGANIZATION_ID || github.repository_owner }}
@@ -41,7 +41,7 @@ jobs:
     name: Security Gate
     needs: [sec_sast_fod, sec_sca_sonatype]
     if: ${{ always() && !cancelled() }}
-    uses: fortify-presales/platform-workflows/.github/workflows/reusable-security-gate.yml@v1
+    uses: fortify-example-organization/platform-workflows/.github/workflows/reusable-security-gate.yml@v1
     with:
       required_statuses_csv: >-
         Fortify=${{ needs.sec_sast_fod.result }},Sonatype=${{ needs.sec_sca_sonatype.result }}
